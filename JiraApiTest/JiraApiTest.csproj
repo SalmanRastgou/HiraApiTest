@@ -33,6 +33,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=4.5.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.4.5.8\lib\net45\ServiceStack.Text.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,11 +55,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Credential.cs" />
+    <Compile Include="IssueObject.cs" />
+    <Compile Include="JiraModels\JiraAttachment.cs" />
+    <Compile Include="JiraModels\JiraComment.cs" />
+    <Compile Include="JiraModels\JiraCommentDetail.cs" />
+    <Compile Include="JiraModels\JiraIssueField.cs" />
+    <Compile Include="JiraModels\JiraIssueFieldPost.cs" />
+    <Compile Include="JiraModels\JiraIssueObject.cs" />
+    <Compile Include="JiraModels\JiraIssueObjectPost.cs" />
+    <Compile Include="JiraModels\JiraIssueType.cs" />
+    <Compile Include="JiraModels\JiraIssueWatchers.cs" />
+    <Compile Include="JiraModels\JiraPerson.cs" />
+    <Compile Include="JiraModels\JiraPriority.cs" />
+    <Compile Include="JiraModels\JiraProgress.cs" />
+    <Compile Include="JiraModels\JiraProject.cs" />
+    <Compile Include="JiraModels\JiraStatus.cs" />
+    <Compile Include="JiraModels\JiraSubtask.cs" />
+    <Compile Include="JiraModels\JiraTimetracking.cs" />
+    <Compile Include="JiraModels\JiraTransitionObject.cs" />
+    <Compile Include="JiraModels\JiraWorklog.cs" />
+    <Compile Include="JiraModels\JiraWorklogDetail.cs" />
+    <Compile Include="JqlObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClass\JiraGetResponse.cs" />
+    <Compile Include="TestClass\JiraPostResponse.cs" />
+    <Compile Include="TestClass\JiraResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
