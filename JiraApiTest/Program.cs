@@ -53,14 +53,14 @@ namespace JiraApiTest
             //GetIssuesReportedForClientRestSharp("MARZEHR", "ticket_gateway");            
             //ConnectionCheck();
 
-            //GetAvailableStatus();
+            GetAvailableStatus();
 
             //AddWatcher("MARZEHR-129", "Charles");
 
             //GetIssueRestSharp("MARZEHR-196");   //169         
 
             //DeleteComment("MARZEHR-196","10811");
-            //GetAvailableTransitions("MARZEHR-129");
+            GetAvailableTransitions("MARZEHR-196");
             //ChangeIssueStatus("MARZEHR-208",421);
 
             //GetIssueStatus("MARZEHR-197");
@@ -357,13 +357,10 @@ namespace JiraApiTest
 
             client.Authenticator = new HttpBasicAuthenticator(Credential.Username, Credential.Password);
 
-            JiraIssueWatchers jiraIssueWatchers = new JiraModels.JiraIssueWatchers() { watchers = new List<JiraModels.JiraWatcher>() { new JiraWatcher() { name = "charles", key = "charles", emailAddress = "charles@neustylesoftware.ca"} } };
+            request.AddJsonBody(watcherName);
 
-            request.AddJsonBody("charles");
-            request.AddJsonBody("salman");            
-
-            var jsonOfObject = JsonConvert.SerializeObject(jiraIssueWatchers);
-            var result = client.Execute<JiraIssueWatchers>(request);
+            var result = client.Execute(request);
+            
         }
 
         static void GetIssueStatus(string issueKey)
