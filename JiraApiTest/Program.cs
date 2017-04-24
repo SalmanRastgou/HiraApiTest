@@ -38,14 +38,14 @@ namespace JiraApiTest
 
             //CreateIssueRest();
 
-            //EditIssueRestSharp("SATP-29");
+            EditIssueRestSharp("MARZEHR-219");
 
             //GetAllIssuesInProjectRestSharp("SATP");
 
             //GetIssuesUnderEpicRestSharp("SATP", "SATP-31");
 
             //CreateComment("MARZEHR-196","Test Comments TT-1");
-            //GetIssueCommentsRestSharp("MARZEHR-196");
+            //GetIssueCommentsRestSharp("MARZEHR-219");
 
 
 
@@ -53,14 +53,14 @@ namespace JiraApiTest
             //GetIssuesReportedForClientRestSharp("MARZEHR", "ticket_gateway");            
             //ConnectionCheck();
 
-            GetAvailableStatus();
+            //GetAvailableStatus();
 
             //AddWatcher("MARZEHR-129", "Charles");
 
-            //GetIssueRestSharp("MARZEHR-196");   //169         
+            GetIssueRestSharp("MARZEHR-219");   //169         
 
             //DeleteComment("MARZEHR-196","10811");
-            GetAvailableTransitions("MARZEHR-196");
+            //GetAvailableTransitions("MARZEHR-196");
             //ChangeIssueStatus("MARZEHR-208",421);
 
             //GetIssueStatus("MARZEHR-197");
@@ -71,6 +71,7 @@ namespace JiraApiTest
             //TestInheritence(jiraPostResponse);
 
             //GetGroups();            
+            DownloadAttachment();
         }
 
         static void TestInheritence(JiraResponse jiraResponse)
@@ -188,12 +189,17 @@ namespace JiraApiTest
 
             if (res.StatusCode == HttpStatusCode.OK)
             {
+                var modifiedSammary = res.Data.fields.summary + " - Updated summary";
 
-                res.Data.fields.summary = "Updated summary";                
+                JiraUpdateFieldObject updatefield = new JiraModels.JiraUpdateFieldObject() { fields = new JiraUpdateField() { summary = modifiedSammary}  };
+                var jsonPayLoad = JsonConvert.SerializeObject(updatefield);
+                
+
                 request = new RestRequest($"issue/{res.Data.key} ", Method.PUT);
                 request.AddHeader("Content-Type", "application/json");
 
-                request.AddJsonBody(res.Data);
+                request.Parameters.Clear();
+                request.AddParameter("application/json", jsonPayLoad, ParameterType.RequestBody);                                
 
                 var res2 = client.Execute(request);
             }
@@ -402,6 +408,26 @@ namespace JiraApiTest
 
             var result = client.Execute(request);
         }
-        
+
+        static void DownloadAttachment()
+        {
+            
+            var client = new RestClient($"https://neustylesoftware.atlassian.net/secure");
+            var request = new RestRequest($"attachment/10415/Client636285911310705788feeling_grateful-31.jpg", Method.GET);
+
+            client.Authenticator = new HttpBasicAuthenticator(Credential.Username, Credential.Password);
+
+            var response = client.Execute(request);
+
+            var bytes = response.RawBytes;
+            File.WriteAllBytes(@"d:\sdfd.jpg", bytes);
+
+            //StreamWriter stream = new StreamWriter("d:\\sdas.jpg",true, Encoding.Unicode);
+            //stream.Write(result.Content);
+
+            
+
+        }
+
     }
 }

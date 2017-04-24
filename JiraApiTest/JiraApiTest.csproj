@@ -74,6 +74,7 @@
     <Compile Include="JiraModels\JiraSubtask.cs" />
     <Compile Include="JiraModels\JiraTimetracking.cs" />
     <Compile Include="JiraModels\JiraTransitionObject.cs" />
+    <Compile Include="JiraModels\jiraUpdateField.cs" />
     <Compile Include="JiraModels\JiraWorklog.cs" />
     <Compile Include="JiraModels\JiraWorklogDetail.cs" />
     <Compile Include="JqlObject.cs" />

@@ -7,6 +7,7 @@ namespace NSSC.CRM.Jira.JiraModels
 {
     public class JiraIssueFieldPost
     {
+
         public JiraIssueType issuetype { get; set; }
         public JiraProject project { get; set; }
         public IEnumerable<string> labels { get; set; }

@@ -11,6 +11,12 @@ namespace NSSC.CRM.Jira.JiraModels
         public string key { get; set; }
         public string emailAddress { get; set; }
         public string displayName { get; set; }
+        public string avatarUrls { get; set; }
 
+    }
+
+    public class JiraPersonAvatar
+    {
+        public string avatar48 { get; set; }
     }
 }
